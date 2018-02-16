@@ -1,0 +1,38 @@
+# ================================================== #
+#                         FLO                        #
+# ================================================== #
+# Author: Brady Hammond                              #
+# Created: 01/21/2018                                #
+# Last Edited: 02/15/2018                            #
+# Last Edited By: Brady Hammond                      #
+# ================================================== #
+#                        MAIN                        #
+# ================================================== #
+
+house main
+    # Setup framer to start other framers
+    framer setup be active
+        frame startup
+            print Starting Server
+            bid start server
+            print Starting Updater
+            bid start updater
+
+    init main.server.test to False
+    init main.server.preload to True
+
+    # Server framer to start, maintain, and close server
+    framer server be inactive via .main.server
+        frame server
+            do reputation server open at enter
+            do reputation server service
+            do reputation server close at exit
+
+    # Processing framer to update reputation
+    framer updater be inactive via .main.updater at 1.0
+        frame updater
+            do reputation process reputation
+
+# ================================================== #
+#                        EOF                         #
+# ================================================== #
