@@ -23,6 +23,8 @@ def test_main():
     assert result.output == '()\n'
     assert result.exit_code == 0
 
+    print("test/test_reputation: test_main() \033[92mPASSED\033[0m")
+
 # ================================================== #
 #                        EOF                         #
 # ================================================== #
