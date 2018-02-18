@@ -12,8 +12,7 @@
 from __future__ import generator_stop
 
 from pytest import approx
-from reputation.help.helping import (setupTmpBaseDir, cleanupTmpBaseDir,
-                                     getAll, getClarity, getReach, getClout)
+from reputation.help.helping import (getAll, getClarity, getReach, getClout)
 
 import pytest
 
@@ -27,6 +26,9 @@ except ImportError:
 # ================================================== #
 
 def test_getAll():
+    """
+    Test getting clarity, reach, and clout.
+    """
     entries = []
     result = getAll("Nathan", entries)
     assert result is False
@@ -103,6 +105,9 @@ def test_getAll():
 # ================================================== #
 
 def test_getReach():
+    """
+    Test getting reach.
+    """
     reachList = []
     reach = getReach(reachList)
     assert reach == (0, 0)
@@ -132,6 +137,9 @@ def test_getReach():
 # ================================================== #
 
 def test_getClarity():
+    """
+    Test getting clarity.
+    """
     clarityList = []
     clarity = getClarity(clarityList)
     assert clarity == (0, 0)
@@ -161,6 +169,9 @@ def test_getClarity():
 # ================================================== #
 
 def test_getClout():
+    """
+    Test getting clout.
+    """
     clout = getClout((0, 0), (0, 0))
     assert clout == (0.0, 0)
 

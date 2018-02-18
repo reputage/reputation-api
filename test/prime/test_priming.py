@@ -29,6 +29,9 @@ except ImportError:
 # ================================================== #
 
 def test_setupPrime():
+    """
+    Test prime setup.
+    """
     baseDirPath = setupTmpBaseDir()
     assert baseDirPath.startswith("/tmp/reputation")
     assert baseDirPath.endswith("test")
@@ -48,6 +51,9 @@ def test_setupPrime():
 # ================================================== #
 
 def test_setupTestPrime():
+    """
+    Test prime test setup.
+    """
     priming.setupTest()
     assert os.path.exists(dbing.gDbDirPath)
 

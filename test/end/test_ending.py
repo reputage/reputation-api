@@ -12,20 +12,15 @@
 from __future__ import generator_stop
 
 from falcon import testing
-from ioflo.aio.http import Valet, Patron
 from ioflo.base import storing
 from pytest import approx
 
 import falcon
-import msgpack
 import pytest
-import os
 import reputation.db.dbing as dbing
 import reputation.end.ending as ending
 import reputation.help.helping as helping
 import reputation.prime.priming as priming
-import tempfile
-import shutil
 
 try:
     import ujson as json
@@ -44,11 +39,20 @@ store = storing.Store(stamp=0.0)
 
 @pytest.fixture
 def app():
+    """
+    Create a test WSGI instance
+    """
     return testing.TestClient(ending.createApp(store=store))
 
 # ================================================== #
 
 def test_reputationResourceOnGet(app):
+    """
+    Test GET to reputation endpoint.
+
+        Parameters:
+        app - WSGI instance
+    """
     priming.setupTest()
     dbing.setupTestDbEnv()
 
@@ -81,6 +85,12 @@ def test_reputationResourceOnGet(app):
 # ================================================== #
 
 def test_reputationResourceOnPost(app):
+    """
+    Test POST to reputation endpoint.
+
+        Parameters:
+        app - WSGI instance
+    """
     priming.setupTest()
     dbing.setupTestDbEnv()
 

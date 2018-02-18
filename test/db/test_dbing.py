@@ -15,7 +15,6 @@ from collections import OrderedDict as ODict
 from pytest import approx
 from reputation.db import dbing
 from reputation.help.helping import setupTmpBaseDir, cleanupTmpBaseDir
-from reputation.prime import priming
 
 import os
 import pytest
@@ -30,6 +29,9 @@ except ImportError:
 # ================================================== #
 
 def test_setupDbEnv():
+    """
+    Test setting up database environment.
+    """
     baseDirPath = setupTmpBaseDir()
     assert baseDirPath.startswith("/tmp/reputation")
     assert baseDirPath.endswith("test")
@@ -75,6 +77,9 @@ def test_setupDbEnv():
 # ================================================== #
 
 def test_putGetEntry():
+    """
+    Test adding and getting a database entry.
+    """
     dbEnv = dbing.setupTestDbEnv()
 
     ser = "{'reputer': 'Søren', 'reputee': 'Kierkegaard', 'repute': {'rid': 'dda6555f-21c8-45ff-9633-f9b5cdc59f45', " \
@@ -92,6 +97,9 @@ def test_putGetEntry():
 # ================================================== #
 
 def test_getEntries():
+    """
+    Test getting all database entries.
+    """
     dbEnv = dbing.setupTestDbEnv()
 
     ser1 = "{'reputer': 'Søren', 'reputee': 'Kierkegaard', 'repute': {'rid': 'dda6555f-21c8-45ff-9633-f9b5cdc59f45', " \
@@ -121,6 +129,9 @@ def test_getEntries():
 # ================================================== #
 
 def test_getEntryKeys():
+    """
+    Test getting all database keys.
+    """
     dbEnv = dbing.setupTestDbEnv()
 
     ser = "{'reputer': 'Søren', 'reputee': 'Kierkegaard', 'repute': {'rid': 'dda6555f-21c8-45ff-9633-f9b5cdc59f45', " \
@@ -150,6 +161,9 @@ def test_getEntryKeys():
 # ================================================== #
 
 def test_deleteEntry():
+    """
+    Test deleting a database entry.
+    """
     dbEnv = dbing.setupTestDbEnv()
 
     ser = "{'reputer': 'Søren', 'reputee': 'Kierkegaard', 'repute': {'rid': 'dda6555f-21c8-45ff-9633-f9b5cdc59f45', " \
@@ -172,6 +186,9 @@ def test_deleteEntry():
 # ================================================== #
 
 def test_deleteEntries():
+    """
+    Test deleting all database entries.
+    """
     dbEnv = dbing.setupTestDbEnv()
 
     ser = "{'reputer': 'Søren', 'reputee': 'Kierkegaard', 'repute': {'rid': 'dda6555f-21c8-45ff-9633-f9b5cdc59f45', " \
