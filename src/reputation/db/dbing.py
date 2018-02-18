@@ -300,7 +300,7 @@ def deleteEntry(key, dbn='unprocessed', env=None):
 
     subDb = gDbEnv.open_db(dbn.encode("utf-8"), dupsort=True)
     with gDbEnv.begin(db=subDb, write=True) as txn:
-        entry = txn.delete(key)
+        entry = txn.delete(key.encode("utf-8"))
         if entry is None:
             raise DatabaseError("Entry could not be deleted")
 
@@ -333,7 +333,7 @@ def deleteEntries(dbn='unprocessed', env=None):
     entries = getEntryKeys(dbn=dbn, env=env)
 
     for entry in entries:
-        result = deleteEntry(key=entry, dbn=dbn, env=env)
+        result = deleteEntry(key=entry.decode("utf-8"), dbn=dbn, env=env)
         if result:
             success = True
 

@@ -78,6 +78,8 @@ def test_reputationResourceOnGet(app):
 
     print("test/end/test_ending: test_reputationResourceOnGet() \033[92mPASSED\033[0m")
 
+# ================================================== #
+
 def test_reputationResourceOnPost(app):
     priming.setupTest()
     dbing.setupTestDbEnv()
