@@ -12,6 +12,8 @@
 .. |codecov.io| image:: https://codecov.io/gh/reputage/reputation-api/branch/master/graph/badge.svg
    :alt: Reputation API Code Coverage
 
+.. contents::
+
 Overview
 ========
 
