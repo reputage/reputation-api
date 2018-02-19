@@ -226,3 +226,10 @@ GET requests to the API should hit the enpoint "/reputation/{{reputee}}" where {
    }
    
 The server will throw a 400 error if no reputee query parameter is included in the URL or if the queried reputee cannot be found in the database. A successful GET request will return a 200 status and a JSON.
+
+Testing
+=======
+
+The API uses pytest for unit testing. Pre-written unit tests are included in the project and can be run by using the following terminal command from the reputation-api folder:
+::
+   $ pytest
