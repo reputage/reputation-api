@@ -30,7 +30,8 @@ Next install Homebrew with the following terminal command:
    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 Now you can run homebrew using the "brew" command from terminal. Homebrew puts everything in /usr/local so it does not clobber Apple installed libraries and binaries. You may have to to add /usr/local/bin to your bash shell path. You can do this by adding the following to your .bashrc file:
 
-.. highlight:: bash
+.. code-block:: bash
+   
    #Add paths for non-interactive non-login shells such as ssh remote command
    
    # /usr/local/sbin prepend
@@ -56,3 +57,39 @@ Now you can run homebrew using the "brew" command from terminal. Homebrew puts e
    # If not running interactively, don't do anymore just return so sftp works:
    [ -z "$PS1" ] && return
 
+You can verify your installation of Homebrew by using the following terminal command:
+::
+   $ brew doctor
+You can upgrade your installation of Homebrew by using the following terminal commands:
+::
+   $ brew update
+   $ brew upgrade
+   $ brew doctor
+Next, you will need Python 3.6. You can use Homebrew to install this by using the following terminal commands:
+::
+   $ brew install python3
+   $ brew linkapps python3
+You can verify your installation of Python 3.6 by using the following terminal command:
+::
+   $ python3 --version
+You can run Python 3.6 in the terminal by using the following terminal command:
+::
+   $ python3
+With your download of Python 3.6, there should have been a command-line tool installed on your computer called pip3. To check if pip3 was successfully installed on your machine, open a terminal and run one of the following terminal commands:
+::
+   $ pip3 -V
+   $ pip3 --version
+If you recieve the following error message: 
+::
+   bash: pip3: command not found
+You can run the following terminal command to install pip3:
+::
+   $ sudo easy_install3 pip
+With pip3 installed run the following terminal command to update your version of pip3 and install setuptools:
+::
+   $ pip3 install --upgrade pip setuptools wheel
+Next, you will need git. You can use Homebrew to install this by using the following terminal commands:
+::
+   $ brew install git git-flow git-extras
+   $ git config --global credential.helper osxkeychain
+   $ brew install git-credential-manager
