@@ -167,7 +167,7 @@ Coming soon.
 Usage
 =====
 
-Staring The Service
+Starting the Service
 -------------------
 From within the reputation-api folder you can run the API by using the following terminal command:
 ::
@@ -181,6 +181,18 @@ Alternatively, the API can be run from any location by editing the path specifie
 - The ``-f`` flag specifies the path or filename to a flo script.
 - The ``-b`` flag specifies the module name to external behavior packages.
 
-POST requests
+POST Requests
 -------------
+POST requests to the API should hit the endpoint "/reputation", and require a body comprised of a JSON with the following format:
+.. code-block:: json
 
+   {
+     "reputer": "name_of_reputer",
+     "reputee": "name_of_reputee",
+     "repute":
+     {
+       "rid" : unique_identifier,
+       "feature": "reach or clarity",
+       "value": 0 to 10
+     }
+   }
