@@ -22,10 +22,10 @@ Installation
 
 MacOS
 -----
-Either install Xcode using the app store application or install only the Xcode command line tools with the following terminal command:
+Either install Xcode using the app store application or install the Xcode command line tools by using the following terminal command:
 :: 
     $ xcode-select --install
-Next install Homebrew with the following terminal command:
+Next install Homebrew by using the following terminal command:
 ::
    $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 Now you can run homebrew using the "brew" command from terminal. Homebrew puts everything in /usr/local so it does not clobber Apple installed libraries and binaries. You may have to to add /usr/local/bin to your bash shell path. You can do this by adding the following to your .bashrc file:
@@ -72,6 +72,9 @@ Next, you will need Python 3.6. You can use Homebrew to install this by using th
 You can verify your installation of Python 3.6 by using the following terminal command:
 ::
    $ python3 --version
+You can see the path to your Python 3.6 installation by using the following terminal command:
+::
+   $ which python3
 You can run Python 3.6 in the terminal by using the following terminal command:
 ::
    $ python3
@@ -93,3 +96,21 @@ Next, you will need git. You can use Homebrew to install this by using the follo
    $ brew install git git-flow git-extras
    $ git config --global credential.helper osxkeychain
    $ brew install git-credential-manager
+Next, you will need to download and install the reputation-api source code. You can do this by using the following terminl commands:
+::
+   $ git clone git clone https://github.com/reputage/reputation-api.git
+   $ cd ..
+   $ pip3 install -e reputation-api
+All of the necessary requirements should have been installed with the last command. If for some reason any of the necessary requirements become uninstalled, you can run the following terminal command from the reputation-api folder to reinstall all of the necessary requirements:
+::
+   $ pip3 install -r requirements.txt
+That completes the MacOS installation process.
+
+Linux (Ubuntu)
+-----
+Update your distro with the following terminal commands:
+::
+   $ sudo apt update  
+   $ sudo apt upgrade  
+   $ sudo apt full-upgrade  
+   $ sudo reboot now
