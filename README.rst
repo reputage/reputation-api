@@ -96,7 +96,7 @@ Next, you will need git. You can use Homebrew to install this by using the follo
    $ brew install git git-flow git-extras
    $ git config --global credential.helper osxkeychain
    $ brew install git-credential-manager
-Next, you will need to download and install the reputation-api source code. You can do this by using the following terminl commands:
+Next, you will need to download and install the reputation-api source code. You can do this by using the following terminal commands:
 ::
    $ git clone git clone https://github.com/reputage/reputation-api.git
    $ cd ..
@@ -114,3 +114,53 @@ Update your distro with the following terminal commands:
    $ sudo apt upgrade  
    $ sudo apt full-upgrade  
    $ sudo reboot now
+Next, you will need Python 3.6. You can install this by using the following terminal commands:
+::
+   $ wget https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tgz
+   $ tar -zxvf Python-3.6.2.tgz
+   $ cd Python-3.6.2
+   $ ./configure
+   $ make
+   $ sudo make install
+You can verify your installation of Python 3.6 by using the following terminal command:
+::
+   $ python3 --version
+You can see the path to your Python 3.6 installation by using the following terminal command:
+::
+   $ which python3
+With your download of Python 3.6, there should have been a command-line tool installed on your computer called pip3. To check if pip3 was successfully installed on your machine, open a terminal and run one of the following terminal commands:
+::
+   $ pip3 -V
+   $ pip3 --version
+If you recieve the following error message: 
+::
+   bash: pip3: command not found
+You can run the following terminal command to install pip3:
+::
+   $ sudo easy_install3 pip
+With pip3 installed run the following terminal command to update your version of pip3 and install setuptools:
+::
+   $ pip3 install --upgrade pip setuptools wheel
+Next, you will need git. You can install this by using the following terminal commands:
+::
+   $ sudo apt install git
+   $ git config --global credential.helper cache
+   $ git config --global credential.https://github.com.username  githubusername
+   $ git config --global user.name "githubusername"
+   $ git config --global user.email "useremail"
+Next, you will need to download and install the reputation-api source code. You can do this by using the following terminal commands:
+::
+   $ git clone git clone https://github.com/reputage/reputation-api.git
+   $ cd ..
+   $ sudo -H pip3 install -e reputation-api
+All of the necessary requirements should have been installed with the last command. If for some reason any of the necessary requirements become uninstalled, you can run the following terminal command from the reputation-api folder to reinstall all of the necessary requirements:
+::
+   $ sudo -H pip3 install -r requirements.txt
+That completes the Linux (Ubuntu) installation process.
+
+Windows
+-------
+Coming soon.
+
+Usage
+=====
