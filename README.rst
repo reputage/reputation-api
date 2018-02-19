@@ -166,10 +166,13 @@ Coming soon.
 
 Usage
 =====
+
+Staring The Service
+-------------------
 From within the reputation-api folder you can run the API by using the following terminal command:
 ::
    $ reputationd -v concise -r -p 0.0625 -n reputation -f src/reputation/flo/main.flo -b reputation.core
-Alternatively, the API can be run from any location by editing the path specified by the ``-f`` flag. The period at which the API's task scheduler iterates can be edited by changing the value specified by the ``-p``. The console output verbosity can be edited by changing the keyword of the ``-v``flag.
+Alternatively, the API can be run from any location by editing the path specified by the ``-f`` flag. The period at which the API's task scheduler iterates can be edited by changing the value specified by the ``-p``. The console output verbosity can be edited by changing the keyword of the ``-v`` flag.
 
 - The ``-v`` flag controls the verbosity level of the console output. The possible verbosity levels are 'mute', 'terse', 'concise', 'verbose', and 'profuse'.
 - The ``-r`` flag runs the scheduler (skedder) in realtime.
@@ -177,3 +180,7 @@ Alternatively, the API can be run from any location by editing the path specifie
 - The ``-n`` flag specifies the name of the skedder.
 - The ``-f`` flag specifies the path or filename to a flo script.
 - The ``-b`` flag specifies the module name to external behavior packages.
+
+POST requests
+-------------
+
