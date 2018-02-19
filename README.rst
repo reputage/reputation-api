@@ -77,9 +77,6 @@ You can verify your installation of Python 3.6 by using the following terminal c
 You can see the path to your Python 3.6 installation by using the following terminal command:
 ::
    $ which python3
-You can run Python 3.6 in the terminal by using the following terminal command:
-::
-   $ python3
 With your download of Python 3.6, there should have been a command-line tool installed on your computer called pip3. To check if pip3 was successfully installed on your machine, open a terminal and run one of the following terminal commands:
 ::
    $ pip3 -V
