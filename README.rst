@@ -184,6 +184,7 @@ Alternatively, the API can be run from any location by editing the path specifie
 POST Requests
 -------------
 POST requests to the API should hit the endpoint "/reputation", and require a body comprised of a JSON with the following format:
+
 .. code-block:: json
 
    {
