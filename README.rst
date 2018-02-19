@@ -17,7 +17,7 @@
 Overview
 ========
 
-The reputation API is a simple API implemented in Python 3.6 using the Falcon API framework. It has a POST and a GET endpoint. Data sent in a POST to the API, is stored in the database, and processed asynchronously. Processed data can be requested using the GET method. Processed reputation data for any given reputee includes clarity, clout, and reach scores and confidence.
+The reputation API is a simple API implemented in Python 3.6 using the Falcon API framework. It has a POST and a GET endpoint. Data submitted by POST to the API, is stored in a database and processed asynchronously. Processed data can be requested using the GET method. Reputation data for any given reputee includes information on clarity, clout, and reach.
 
 Installation
 ============
