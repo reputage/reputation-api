@@ -192,8 +192,35 @@ POST requests to the API should hit the endpoint "/reputation", and require a bo
      "reputee": "name_of_reputee",
      "repute":
      {
-       "rid" : unique_identifier,
+       "rid" : "unique_identifier",
        "feature": "reach or clarity",
-       "value": 0 to 10
+       "value": 0-10
      }
+   }
+
+It is the client's responsibility to ensure that RIDs are unique. It is suggested that RID's be universally unique, but this is not strictly enforced. RID's must, however, be unique per paring of reputer and reputee otherwise they will be discarded. The server will throw an HTTP 400 error if no JSON is sent, an empty JSON is sent, or if a JSON with the wrong formatting is sent. The server will throw a 422 error if the JSON is incorrectly encoded. The server will return a 201 status if the posted data was successfully added to the database or a 200 status if the posted data was already found in the database.
+
+GET Requests
+------------
+GET requests to the API should hit the enpoint "/reputation/{{reputee}}" where {{reputee}} is the name of a reputee. Successful GET requests will return a JSON of the following format:
+
+.. code-block:: json
+
+   {
+      "reputee": "name_of_reputee",
+      "clout":
+      {
+        "score": number between 0 and 1,
+        "confidence": number between 0 and 1
+      },
+      "reach":
+      {
+        "score": number between 0 and 10,
+        "confidence": number between 0 and 1
+      },
+      "clarity":
+      {
+        "score": number between 0 and 10,
+        "confidence": number between 0 and 1
+      }
    }
