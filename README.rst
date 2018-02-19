@@ -183,7 +183,7 @@ Alternatively, the API can be run from any location by editing the path specifie
 
 POST Requests
 -------------
-POST requests to the API should hit the endpoint "/reputation", and require a body comprised of a JSON with the following format:
+POST requests to the API should hit the endpoint "/reputation" and require a body with a JSON of the following format:
 
 .. code-block:: json
 
@@ -210,17 +210,19 @@ GET requests to the API should hit the enpoint "/reputation/{{reputee}}" where {
       "reputee": "name_of_reputee",
       "clout":
       {
-        "score": number between 0 and 1,
-        "confidence": number between 0 and 1
+        "score": 0-1,
+        "confidence": 0-1
       },
       "reach":
       {
-        "score": number between 0 and 10,
-        "confidence": number between 0 and 1
+        "score": 0-10,
+        "confidence": 0-1
       },
       "clarity":
       {
-        "score": number between 0 and 10,
-        "confidence": number between 0 and 1
+        "score": 0-10,
+        "confidence": 0-1
       }
    }
+   
+The server will throw a 400 error if no reputee query parameter is included in the URL or if the queried reputee cannot be found in the database. A successful GET request will return a 200 status and a JSON.
