@@ -17,13 +17,7 @@ pip-selfcheck.json
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/inspectionProfiles/
-.idea/codeStyles
-.idea/**/workspace.xml
-.idea/workspace.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
+.idea/
 .idea/**/tasks.xml
 .idea/dictionaries
 
