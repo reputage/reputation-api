@@ -2,9 +2,9 @@
 #                       SETUP                        #
 # ================================================== #
 # Author: Brady Hammond                              #
-# Created: 01/21/2017                                #
-# Last Edited: N/A                                   #
-# Last Edited By: N/A                                #
+# Created: 01/21/2018                                #
+# Last Edited: 02/18/2018                            #
+# Last Edited By: Brady Hammond                      #
 # ================================================== #
 #                      IMPORTS                       #
 # ================================================== #
@@ -106,8 +106,9 @@ setup(
     keywords=[
     ],
     install_requires=[
-        'click', 'falcon>=1.4.1', 'ioflo>=1.6.8', 'libnacl>=1.5.1',
-        'ujson>=1.35', 'pytest-falcon>=0.4.2', 'arrow>=0.10.0',
+        'click>=6.7', 'falcon>=1.4.1', 'ioflo>=1.6.8', 'libnacl>=1.5.1',
+        'ujson>=1.35', 'pytest-falcon>=0.4.2', 'arrow>=0.10.0', 'lmdb>=0.93',
+        'msgpack>=0.5.4', 'pytest>=3.4.0'
     ],
     extras_require={
     },
