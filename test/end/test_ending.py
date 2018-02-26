@@ -95,33 +95,48 @@ def test_reputationResourceOnPost(app):
     dbing.setupTestDbEnv()
 
     response = app.simulate_post('/reputation/søren')
+    assert response.content == b'{"title":"Error","description":"Invalid or missing signature header."}'
+    assert response.status == falcon.HTTP_400
+
+    body = b''
+    header = {"Signature": ""}
+    did, sk = helping.makeTestDid()
+    header["Signature"] = 'signer="' + helping.signResource(body, sk) + '"'
+    response = app.simulate_post('/reputation/søren', headers=header)
     assert response.content == b'{"title":"Error","description":"Malformed URI."}'
     assert response.status == falcon.HTTP_400
 
-    response = app.simulate_post('/reputation/')
+    response = app.simulate_post('/reputation/', headers=header)
     assert response.content == b'{"title":"Error","description":"A valid JSON document is required."}'
     assert response.status == falcon.HTTP_400
 
-    response = app.simulate_post('/reputation/', body=b'Testing ... 1 ... 2 ... 3')
+    body = b'Testing ... 1 ... 2 ... 3'
+    header = {"Signature": ""}
+    header["Signature"] = 'signer="' + helping.signResource(body, sk) + '"'
+    response = app.simulate_post('/reputation/', body=body, headers=header)
     assert response.content == b'{"title":"Error","description":"Could not decode the request body. The JSON was malformed or not encoded as UTF-8."}'
     assert response.status == falcon.HTTP_422
 
-    ser = json.dumps({"test":"test"})
-    response = app.simulate_post('/reputation/', body=ser)
-    assert response.content == b'{"title":"Error","description":"The JSON was formatted incorrectly."}'
+    ser = json.dumps({"reputee": did.encode('utf-8')})
+    header = {"Signature": ""}
+    header["Signature"] = 'signer="' + helping.signResource(ser, sk) + '"'
+    response = app.simulate_post('/reputation/', body=ser, headers=header)
+    assert response.content == b'{"title":"Error","description":"The request body could not be validated."}'
     assert response.status == falcon.HTTP_400
 
     ser = json.dumps({
     "reputer": "Søren",
-    "reputee": "Kierkegaard",
+    "reputee": did,
     "repute":
       {
         "rid": "dda6555f-21c8-45ff-9633-f9b5cdc59f45",
         "feature": "clarity",
         "value": 5
       }
-    })
-    response = app.simulate_post('/reputation/', body=ser)
+    }).encode('utf-8')
+    header = {"Signature": ""}
+    header["Signature"] = 'signer="' + helping.signResource(ser, sk) + '"'
+    response = app.simulate_post('/reputation/', body=ser, headers=header)
     assert response.content == b'{"Message":"entry successfully created."}'
     assert response.status == falcon.HTTP_201
 

@@ -12,6 +12,14 @@
 from __future__ import generator_stop
 
 # ================================================== #
+#                 CONSTANTS & GLOBALS                #
+# ================================================== #
+
+DID_LENGTH = 52
+SEPARATOR = "\r\n\r\n"
+SEPARATOR_BYTES = SEPARATOR.encode("utf-8")
+
+# ================================================== #
 #                  CLASS DEFINITIONS                 #
 # ================================================== #
 

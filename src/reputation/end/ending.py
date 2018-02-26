@@ -12,7 +12,9 @@
 from __future__ import generator_stop
 
 from ioflo.aid import getConsole
+from .. import reputationing
 from ..db import dbing
+from ..help import helping
 
 import falcon
 
@@ -36,16 +38,13 @@ console = getConsole()
 class ReputationResource:
     """
     Reputation resource class.
-
-        Attributes:
-        .store - Reference to ioflo data store
     """
     def __init__(self, store=None, **kwa):
         """
         Initialize ReputationResource object.
 
             Parameters:
-            .store - Reference to ioflo data store
+            store - Reference to ioflo data store
         """
         super(**kwa)
         self.store = store
@@ -76,7 +75,7 @@ class ReputationResource:
 
 
         try:
-            reputee = reputee.lower()
+            reputee = reputee
             result = dbing.getEntry(reputee, dbn='reputation')
         except dbing.DatabaseError:
             raise falcon.HTTPError(falcon.HTTP_400, 'Error', 'Reputee could not be found.')
@@ -94,7 +93,7 @@ class ReputationResource:
             /reputation
 
             Headers:
-            N/A
+            "Signature": "tag = signature"
 
             Body:
             {
@@ -113,6 +112,13 @@ class ReputationResource:
             resp - Falcon response variable
             parameter - Additional URI variable(s)
         """
+        signature = req.get_header("Signature")
+        sigs = helping.parseSignatureHeader(signature)
+        sig = sigs.get('signer')
+
+        if not sig:
+            raise falcon.HTTPError(falcon.HTTP_400, 'Error', 'Invalid or missing signature header.')
+
         if not reputee is None:
             raise falcon.HTTPError(falcon.HTTP_400, 'Error', 'Malformed URI.')
         try:
@@ -131,8 +137,13 @@ class ReputationResource:
                                    'UTF-8.')
 
         try:
+            helping.validateSignedResource(sig, rawJson, helping.extractDidParts(jsonObject['reputee']))
+        except reputationing.ValidationError:
+            raise falcon.HTTPError(falcon.HTTP_400, 'Error', 'The request body could not be validated.')
+
+        try:
             reputer = jsonObject['reputer']
-            reputee = jsonObject['reputee'].lower()
+            reputee = jsonObject['reputee']
             rid = str(jsonObject['repute']['rid'])
             feature = jsonObject['repute']['feature']
             value = jsonObject['repute']['value']
@@ -143,7 +154,7 @@ class ReputationResource:
                               "repute": {"rid": rid, "feature": feature, "value": value}})
 
             try:
-                result = dbing.getEntry(reputee.lower(), dbn='preprocessed')
+                result = dbing.getEntry(reputee, dbn='preprocessed')
 
                 if result is False:
                     raise falcon.HTTPError(falcon.HTTP_400, 'Entry could not be created.')
