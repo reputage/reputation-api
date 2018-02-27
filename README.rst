@@ -191,6 +191,24 @@ POST requests to the API should hit the endpoint "/reputation" and require a bod
 
 It is the client's responsibility to ensure that RIDs are unique. It is suggested that RID's be universally unique, but this is not strictly enforced. RID's must, however, be unique per paring of reputer and reputee otherwise they will be discarded. The server will throw an HTTP 400 error if no JSON is sent, an empty JSON is sent, or if a JSON with the wrong formatting is sent. The server will throw a 422 error if the JSON is incorrectly encoded. The server will return a 201 status if the posted data was successfully added to the database or a 200 status if the posted data was already found in the database.
 
+POST requests also require a custom "Signature" header that provides one or more signatures of the request/response body text. The format of the custom Signature header follows the conventions of RFC 7230. The "Signature" header has the following format where tag is replaced with a unique string for each signature value:
+
+::
+
+   Signature: tag = "signature"
+      or
+   Signature: tag = "signature"; tag = "signature";  ...
+  
+An example is shown below where one tag is the string signer and the other tag is the string current.
+
+::
+
+   Signature: signer="Y5xTb0_jTzZYrf5SSEK2f3LSLwIwhOX7GEj6YfRWmGViKAesa08UkNWukUkPGuKuu-EAH5U-sdFPPboBAsjRBw=="; current="Xhh6WWGJGgjU5V-e57gj4HcJ87LLOhQr2Sqg5VToTSg-SI1W3A8lgISxOjAI5pa2qnonyz3tpGvC2cmf1VTpBg=="
+
+The tag is the name of a field in the body of the request whose value is a DID from which the public key for the signature can be obtained. If the same tag appears multiple times then only the last occurrence is used. Each signature value is a doubly quoted string ("") that contains the actual signature in Base64 url safe format. By default the signatures are 64 byte EdDSA (Ed25519) signatures that have been encoded into BASE64 url-file safe format. The encoded signatures are 88 characters in length and include two trailing pad characters (==).
+
+An optional tag name is "kind" where the values EdDSA or Ed25519 may be present. The kind tag field value specifies the type of signature. All signatures within the header must be of the same kind. The two tag field values currently supported are did and signer.
+
 GET Requests
 ------------
 GET requests to the API should hit the enpoint "/reputation/{{reputee}}" where {{reputee}} is the name of a reputee. Successful GET requests will return a JSON of the following format:
@@ -268,3 +286,4 @@ Below are a list of resources that you may find helpful:
 - https://insomnia.rest
 - http://ioflo.com
 - https://www.python.org
+- https://tools.ietf.org/html/rfc7230
