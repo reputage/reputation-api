@@ -94,7 +94,7 @@ Next, you will need git. You can use Homebrew to install this by using the follo
    $ brew install git-credential-manager
 Next, you will need to download and install the reputation-api source code. You can do this by using the following terminal commands:
 ::
-   $ git clone git clone https://github.com/reputage/reputation-api.git
+   $ git clone https://github.com/reputage/reputation-api.git
    $ cd ..
    $ pip3 install -e reputation-api
 All of the necessary requirements should have been installed with the last command. If for some reason any of the necessary requirements become uninstalled, you can run the following terminal command from the reputation-api folder to reinstall all of the necessary requirements:
